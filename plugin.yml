@@ -1,0 +1,14 @@
+name: EasyPets
+author: Vestri
+description: EasyPets
+version: 0.1
+api-version: 1.15
+main: ep.java.EasyPets
+permissions:
+  sp.admin:
+    description: admin
+    default: op
+commands:
+  spgive:
+    description: give pet
+    usage: /epgive [playername] [petname]
