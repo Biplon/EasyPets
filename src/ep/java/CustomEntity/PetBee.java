@@ -1,5 +1,6 @@
 package ep.java.CustomEntity;
 
+import ep.java.Pathfinder.PathfinderGoalPet;
 import net.minecraft.server.v1_15_R1.*;
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_15_R1.CraftWorld;
@@ -17,5 +18,12 @@ public class PetBee extends EntityBee
         this.setInvulnerable(true);
         this.setAge(1,true);
         this.setGoalTarget((EntityLiving) ((CraftPlayer) p).getHandle(), EntityTargetEvent.TargetReason.CUSTOM, true);
+    }
+
+    @Override
+    protected void initPathfinder()
+    {
+        super.initPathfinder();
+        this.goalSelector.a(0, new PathfinderGoalPet(this, 1, 15));
     }
 }

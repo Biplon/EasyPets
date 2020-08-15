@@ -1,5 +1,7 @@
 package ep.java.CustomEntity;
 
+import ep.java.Pathfinder.PathfinderGoalPet;
+import ep.java.Pathfinder.PathfinderGoalPetSlime;
 import net.minecraft.server.v1_15_R1.EntityLiving;
 import net.minecraft.server.v1_15_R1.EntityMagmaCube;
 import net.minecraft.server.v1_15_R1.EntityTypes;
@@ -18,5 +20,12 @@ public class PetMSlime extends EntityMagmaCube
         this.setInvulnerable(true);
         this.setSize(1,true);
         this.setGoalTarget((EntityLiving) ((CraftPlayer) p).getHandle(), EntityTargetEvent.TargetReason.CUSTOM, true);
+    }
+
+    @Override
+    protected void initPathfinder()
+    {
+        super.initPathfinder();
+        this.targetSelector.a(0, new PathfinderGoalPetSlime(this, 1, 10));
     }
 }

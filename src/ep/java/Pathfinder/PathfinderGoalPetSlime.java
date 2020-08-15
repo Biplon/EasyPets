@@ -5,11 +5,11 @@ import net.minecraft.server.v1_15_R1.*;
 
 import java.util.EnumSet;
 
-public class PathfinderGoalPet extends PathfinderGoal
+public class PathfinderGoalPetSlime extends PathfinderGoal
 {
-    private final EntityInsentient a;
-
     private EntityLiving b;
+
+    private final EntitySlime a;
 
     private final double f;
 
@@ -19,15 +19,14 @@ public class PathfinderGoalPet extends PathfinderGoal
     private double d;
     private double e;
 
-    public PathfinderGoalPet(EntityInsentient a, double f, float g)
+    public PathfinderGoalPetSlime(EntitySlime entityslime, double f, float g)
     {
-        this.a = a;
+        this.a = entityslime;
         this.f = f;
         this.g = g;
         this.a(EnumSet.of(Type.MOVE));
     }
 
-    @Override
     public boolean a()
     {
         this.b = this.a.getGoalTarget();
@@ -51,15 +50,6 @@ public class PathfinderGoalPet extends PathfinderGoal
         else
         {
 
-            if (this.a instanceof EntityCreature)
-            {
-                Vec3D   vec = RandomPositionGenerator.a((EntityCreature)  this.a,16,7, this.b.getPositionVector());
-                if (vec == null)
-                {
-                    return false;
-                }
-            }
-
             this.c =  this.b.locX();
             this.d =  this.b.locY();
             this.e =  this.b.locZ();
@@ -69,7 +59,8 @@ public class PathfinderGoalPet extends PathfinderGoal
 
     public void c()
     {
-        this.a.getNavigation().a( this.c, this.d, this.e, this.f);
+        this.a.getNavigation().a(this.b,this.f);
+        super.c();
     }
 
     public boolean b()
@@ -81,4 +72,5 @@ public class PathfinderGoalPet extends PathfinderGoal
     {
         this.b = null;
     }
+
 }
