@@ -20,11 +20,6 @@ public class Pet
 
     private Entity myEntity;
 
-    public Entity getMyEntity()
-    {
-        return myEntity;
-    }
-
     public Player getOwner()
     {
         return owner;

@@ -1,8 +1,6 @@
 package ep.java.Pets;
 
 import net.minecraft.server.v1_15_R1.EntityFox;
-import org.bukkit.Bukkit;
-import org.bukkit.Color;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;

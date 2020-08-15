@@ -5,7 +5,6 @@ import ep.java.Config.LanguageManager;
 import ep.java.Events.OnEntityDamage;
 import ep.java.Events.OnPlayerClicks;
 import ep.java.Manager.PetsManager;
-import net.minecraft.server.v1_15_R1.*;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -21,8 +20,6 @@ public class EasyPets extends JavaPlugin
     {
         return instance;
     }
-
-    EntityTypes<Entity> typesLoc;
 
     @Override
     public void onEnable()

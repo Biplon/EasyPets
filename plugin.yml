@@ -5,10 +5,10 @@ version: 0.1
 api-version: 1.15
 main: ep.java.EasyPets
 permissions:
-  sp.admin:
+  ep.admin:
     description: admin
     default: op
 commands:
-  spgive:
+  epgive:
     description: give pet
     usage: /epgive [playername] [petname]

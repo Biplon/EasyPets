@@ -201,7 +201,7 @@ public class PetsManager
             Map<Integer, ItemStack> map;
             for (PetStruct petStruct : petList)
             {
-               map = p.getInventory().addItem(createItem(petStruct.getItemMaterial(), LanguageManager.name + petStruct.getName(), LanguageManager.lore1, petStruct.getName()));
+               map = p.getInventory().addItem(createItem(petStruct.getItemMaterial(), LanguageManager.name + petStruct.getName(), LanguageManager.lore1, petStruct.getName(),LanguageManager.lore3));
                 if (map.size() == 1)
                 {
                     for (final ItemStack item : map.values())

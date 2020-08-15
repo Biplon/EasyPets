@@ -7,17 +7,17 @@ import java.util.EnumSet;
 
 public class PathfinderGoalPet extends PathfinderGoal
 {
-    private final EntityInsentient a; //a
+    private final EntityInsentient a;
 
-    private EntityLiving b; //b
+    private EntityLiving b;
 
-    private final double f; //f
+    private final double f;
 
-    private final float g; //g
+    private final float g;
 
-    private double c; //c
-    private double d;//d
-    private double e;//e
+    private double c;
+    private double d;
+    private double e;
 
     public PathfinderGoalPet(EntityInsentient a, double f, float g)
     {

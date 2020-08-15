@@ -14,7 +14,7 @@ public class GivePlayerPetCommand implements CommandExecutor
         if (commandSender instanceof Player)
         {
             Player player = (Player) commandSender;
-            if (!player.hasPermission("sp.admin"))
+            if (!player.hasPermission("ep.admin"))
             {
                 return false;
             }

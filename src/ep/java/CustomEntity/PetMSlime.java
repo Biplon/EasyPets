@@ -2,7 +2,6 @@ package ep.java.CustomEntity;
 
 import net.minecraft.server.v1_15_R1.EntityLiving;
 import net.minecraft.server.v1_15_R1.EntityMagmaCube;
-import net.minecraft.server.v1_15_R1.EntitySlime;
 import net.minecraft.server.v1_15_R1.EntityTypes;
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_15_R1.CraftWorld;
