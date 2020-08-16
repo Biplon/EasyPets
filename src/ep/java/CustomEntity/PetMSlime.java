@@ -5,13 +5,15 @@ import ep.java.Pathfinder.PathfinderGoalPetSlime;
 import net.minecraft.server.v1_15_R1.EntityLiving;
 import net.minecraft.server.v1_15_R1.EntityMagmaCube;
 import net.minecraft.server.v1_15_R1.EntityTypes;
+import net.minecraft.server.v1_15_R1.SoundEffect;
 import org.bukkit.Location;
+import org.bukkit.Sound;
 import org.bukkit.craftbukkit.v1_15_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_15_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityTargetEvent;
 
-public class PetMSlime extends EntityMagmaCube
+public class PetMSlime extends EntityMagmaCube implements PetPlaySound
 {
     public PetMSlime(Location loc, Player p)
     {
@@ -36,5 +38,11 @@ public class PetMSlime extends EntityMagmaCube
     {
         super.initPathfinder();
         this.targetSelector.a(0, new PathfinderGoalPetSlime(this, 1, 10));
+    }
+
+    @Override
+    public Sound getSound()
+    {
+        return Sound.ENTITY_SLIME_HURT;
     }
 }

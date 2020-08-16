@@ -2,11 +2,12 @@ package ep.java.CustomEntity;
 
 import net.minecraft.server.v1_15_R1.*;
 import org.bukkit.Location;
+import org.bukkit.Sound;
 import org.bukkit.craftbukkit.v1_15_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_15_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
-public class PetVex extends EntityVex
+public class PetVex extends EntityVex implements PetPlaySound
 {
     private EntityLiving goal;
 
@@ -57,5 +58,11 @@ public class PetVex extends EntityVex
 
         }
 
+    }
+
+    @Override
+    public Sound getSound()
+    {
+        return Sound.ENTITY_VEX_AMBIENT;
     }
 }

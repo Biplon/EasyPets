@@ -2,13 +2,14 @@ package ep.java.CustomEntity;
 
 import net.minecraft.server.v1_15_R1.*;
 import org.bukkit.Location;
+import org.bukkit.Sound;
 import org.bukkit.craftbukkit.v1_15_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_15_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 import java.util.Random;
 
-public class PetPufferFish extends EntityPufferFish
+public class PetPufferFish extends EntityPufferFish implements PetPlaySound
 {
     private EntityLiving goal;
 
@@ -55,5 +56,11 @@ public class PetPufferFish extends EntityPufferFish
             this.yaw += f1;
 
         }
+    }
+
+    @Override
+    public Sound getSound()
+    {
+        return Sound.ENTITY_PUFFER_FISH_AMBIENT;
     }
 }

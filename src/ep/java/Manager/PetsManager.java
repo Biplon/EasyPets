@@ -1,9 +1,11 @@
 package ep.java.Manager;
 
 import ep.java.Config.LanguageManager;
+import ep.java.CustomEntity.PetPlaySound;
 import org.bukkit.Bukkit;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.craftbukkit.libs.org.apache.commons.io.FileUtils;
 import org.bukkit.entity.*;
 import org.bukkit.inventory.ItemStack;
@@ -114,6 +116,18 @@ public class PetsManager
             }
         }
         return false;
+    }
+
+    public void playSound(Entity e,Player p)
+    {
+        for (Pet pet : activePets)
+        {
+            if (pet.getMyEntity().getDisplayName().getText().contains(Objects.requireNonNull(e.getCustomName())))
+            {
+                World w = p.getWorld();
+                w.playSound(p.getLocation(),((PetPlaySound) pet.getMyEntity()).getSound(), 10,1);
+            }
+        }
     }
 
     private boolean createPet(String petname, Player p)

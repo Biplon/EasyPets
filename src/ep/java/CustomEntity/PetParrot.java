@@ -3,12 +3,13 @@ package ep.java.CustomEntity;
 import ep.java.Pathfinder.PathfinderGoalPet;
 import net.minecraft.server.v1_15_R1.*;
 import org.bukkit.Location;
+import org.bukkit.Sound;
 import org.bukkit.craftbukkit.v1_15_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_15_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityTargetEvent;
 
-public class PetParrot extends EntityParrot
+public class PetParrot extends EntityParrot implements PetPlaySound
 {
 
     public PetParrot(Location loc, Player p,int variant)
@@ -33,7 +34,13 @@ public class PetParrot extends EntityParrot
     @Override
     protected void initPathfinder()
     {
-        super.initPathfinder();
         this.goalSelector.a(0, new PathfinderGoalPet(this, 2, 15));
+        this.goalSelector.a(2, new PathfinderGoalRandomFly(this, 1.0D));
+    }
+
+    @Override
+    public Sound getSound()
+    {
+        return Sound.ENTITY_PARROT_AMBIENT;
     }
 }

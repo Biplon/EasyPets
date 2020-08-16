@@ -8,7 +8,16 @@ permissions:
   ep.admin:
     description: admin
     default: op
+  ep.changename:
+    description: changename
+    default: op
+  ep.changenamecolor:
+    description: changename
+    default: op
 commands:
   epgive:
     description: give pet
-    usage: /epgive [playername] [petname]
+    usage: /epgive <playername> [petname]
+  epchangename:
+    description: hold pet in the main hand
+    usage: /epchangename <name>

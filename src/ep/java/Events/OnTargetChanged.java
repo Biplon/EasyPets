@@ -1,9 +1,7 @@
 package ep.java.Events;
 
 import ep.java.Config.LanguageManager;
-import ep.java.Manager.PetsManager;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;

@@ -1,11 +1,9 @@
 package ep.java;
 
+import ep.java.Commands.ChangePetNameCommand;
 import ep.java.Commands.GivePlayerPetCommand;
 import ep.java.Config.LanguageManager;
-import ep.java.Events.OnEntityDamage;
-import ep.java.Events.OnPlayerClicks;
-import ep.java.Events.OnPlayerQuit;
-import ep.java.Events.OnTargetChanged;
+import ep.java.Events.*;
 import ep.java.Manager.PetsManager;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.PluginManager;
@@ -38,6 +36,7 @@ public class EasyPets extends JavaPlugin
     private void regCommands()
     {
         Objects.requireNonNull(this.getCommand("epgive")).setExecutor(new GivePlayerPetCommand());
+        Objects.requireNonNull(this.getCommand("epchangename")).setExecutor(new ChangePetNameCommand());
     }
 
     private void regEvents()
@@ -47,6 +46,7 @@ public class EasyPets extends JavaPlugin
         pm.registerEvents(new OnEntityDamage(), this);
         pm.registerEvents(new OnTargetChanged(), this);
         pm.registerEvents(new OnPlayerQuit(), this);
+        pm.registerEvents(new OnPlayerInteractEntity(), this);
     }
 
     @Override

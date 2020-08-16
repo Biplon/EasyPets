@@ -3,12 +3,13 @@ package ep.java.CustomEntity;
 import ep.java.Pathfinder.PathfinderGoalPet;
 import net.minecraft.server.v1_15_R1.*;
 import org.bukkit.Location;
+import org.bukkit.Sound;
 import org.bukkit.craftbukkit.v1_15_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_15_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityTargetEvent;
 
-public class PetTurtle extends EntityTurtle
+public class PetTurtle extends EntityTurtle implements PetPlaySound
 {
 
     public PetTurtle(Location loc, Player p)
@@ -35,5 +36,11 @@ public class PetTurtle extends EntityTurtle
     {
         this.goalSelector.a(0, new PathfinderGoalFloat(this));
         this.goalSelector.a(1, new PathfinderGoalPet(this, 3, 15));
+    }
+
+    @Override
+    public Sound getSound()
+    {
+        return Sound.ENTITY_TURTLE_AMBIENT_LAND;
     }
 }

@@ -2,16 +2,13 @@ package ep.java.CustomEntity;
 
 import net.minecraft.server.v1_15_R1.*;
 import org.bukkit.Location;
+import org.bukkit.Sound;
 import org.bukkit.craftbukkit.v1_15_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_15_R1.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_15_R1.event.CraftEventFactory;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.event.entity.EntityTargetEvent;
 
-import java.util.List;
-
-public class PetBat extends EntityBat
+public class PetBat extends EntityBat implements PetPlaySound
 {
     private EntityLiving goal;
 
@@ -75,5 +72,11 @@ public class PetBat extends EntityBat
 
         }
 
+    }
+
+    @Override
+    public Sound getSound()
+    {
+       return Sound.ENTITY_BAT_AMBIENT;
     }
 }

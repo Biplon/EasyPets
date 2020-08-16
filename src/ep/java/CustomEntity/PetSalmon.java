@@ -3,12 +3,13 @@ package ep.java.CustomEntity;
 import ep.java.Pathfinder.PathfinderGoalPet;
 import net.minecraft.server.v1_15_R1.*;
 import org.bukkit.Location;
+import org.bukkit.Sound;
 import org.bukkit.craftbukkit.v1_15_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_15_R1.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_15_R1.event.CraftEventFactory;
 import org.bukkit.entity.Player;
 
-public class PetSalmon extends EntitySalmon
+public class PetSalmon extends EntitySalmon implements PetPlaySound
 {
     private EntityLiving goal;
 
@@ -54,5 +55,11 @@ public class PetSalmon extends EntitySalmon
                 this.yaw += f1;
 
         }
+    }
+
+    @Override
+    public Sound getSound()
+    {
+        return Sound.ENTITY_SALMON_AMBIENT;
     }
 }

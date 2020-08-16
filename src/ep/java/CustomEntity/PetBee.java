@@ -3,12 +3,13 @@ package ep.java.CustomEntity;
 import ep.java.Pathfinder.PathfinderGoalPet;
 import net.minecraft.server.v1_15_R1.*;
 import org.bukkit.Location;
+import org.bukkit.Sound;
 import org.bukkit.craftbukkit.v1_15_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_15_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityTargetEvent;
 
-public class PetBee extends EntityBee
+public class PetBee extends EntityBee implements PetPlaySound
 {
 
     public PetBee(Location loc, Player p)
@@ -34,5 +35,11 @@ public class PetBee extends EntityBee
     {
         super.initPathfinder();
         this.goalSelector.a(0, new PathfinderGoalPet(this, 1, 15));
+    }
+
+    @Override
+    public Sound getSound()
+    {
+        return Sound.ENTITY_BEE_LOOP;
     }
 }

@@ -2,13 +2,14 @@ package ep.java.CustomEntity;
 
 import net.minecraft.server.v1_15_R1.*;
 import org.bukkit.Location;
+import org.bukkit.Sound;
 import org.bukkit.craftbukkit.v1_15_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_15_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityTargetEvent;
 import ep.java.Pathfinder.PathfinderGoalPet;
 
-public class PetCat extends EntityCat
+public class PetCat extends EntityCat implements PetPlaySound
 {
 
     public PetCat(Location loc, Player p,int variant)
@@ -40,4 +41,9 @@ public class PetCat extends EntityCat
         this.goalSelector.a(3, new PathfinderGoalRandomLookaround(this));
     }
 
+    @Override
+    public Sound getSound()
+    {
+        return Sound.ENTITY_CAT_AMBIENT;
+    }
 }

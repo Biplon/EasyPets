@@ -159,12 +159,16 @@ public class Pet
         {
             enti = new PetZHorse(p.getLocation(),p);
         }
+        else if (ps.getMyEntityType() == EntityType.DROWNED)
+        {
+            enti = new PetDZombie(p.getLocation(),p);
+        }
         else if (ps.getMyEntityType() == EntityType.HORSE)
         {
             enti = new PetHorse(p.getLocation(),p,ps.getVariant());
         }
         ((CraftWorld) p.getWorld()).getHandle().addEntity(enti);
-        enti.setCustomName(new ChatComponentText(LanguageManager.name + "" + ps.getName()));
+        enti.setCustomName(new ChatComponentText(LanguageManager.name + "" + p.getInventory().getItemInMainHand().getItemMeta().getDisplayName().replace(LanguageManager.name,"")));
         enti.setCustomNameVisible(true);
         myEntity = enti;
     }

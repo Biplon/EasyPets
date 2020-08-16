@@ -3,12 +3,13 @@ package ep.java.CustomEntity;
 import ep.java.Pathfinder.PathfinderGoalPet;
 import net.minecraft.server.v1_15_R1.*;
 import org.bukkit.Location;
+import org.bukkit.Sound;
 import org.bukkit.craftbukkit.v1_15_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_15_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityTargetEvent;
 
-public class PetZVillager extends EntityZombieVillager
+public class PetZVillager extends EntityZombieVillager implements PetPlaySound
 {
 
     public PetZVillager(Location loc, Player p)
@@ -38,6 +39,12 @@ public class PetZVillager extends EntityZombieVillager
         this.goalSelector.a(0, new PathfinderGoalFloat(this));
         this.goalSelector.a(1, new PathfinderGoalPet(this, 1, 15));
         this.goalSelector.a(2, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 8.0F));
+    }
+
+    @Override
+    public Sound getSound()
+    {
+        return Sound.ENTITY_ZOMBIE_VILLAGER_AMBIENT;
     }
 }
 

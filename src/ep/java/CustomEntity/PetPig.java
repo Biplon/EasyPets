@@ -2,13 +2,14 @@ package ep.java.CustomEntity;
 
 import net.minecraft.server.v1_15_R1.*;
 import org.bukkit.Location;
+import org.bukkit.Sound;
 import org.bukkit.craftbukkit.v1_15_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_15_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityTargetEvent;
 import ep.java.Pathfinder.PathfinderGoalPet;
 
-public class PetPig extends EntityPig
+public class PetPig extends EntityPig implements PetPlaySound
 {
     public PetPig(Location loc, Player p)
     {
@@ -35,5 +36,11 @@ public class PetPig extends EntityPig
         this.goalSelector.a(0, new PathfinderGoalFloat(this));
         this.goalSelector.a(1, new PathfinderGoalPet(this, 1, 15));
         this.goalSelector.a(2, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 8.0F));
+    }
+
+    @Override
+    public Sound getSound()
+    {
+        return Sound.ENTITY_PIG_AMBIENT;
     }
 }
