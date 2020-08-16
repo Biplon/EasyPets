@@ -31,11 +31,11 @@ public class PathfinderGoalPet extends PathfinderGoal
     public boolean a()
     {
         this.b = this.a.getGoalTarget();
-        if ( this.b == null)
+        if (this.b == null)
         {
             return false;
         }
-        else if ( this.a.getDisplayName() == null)
+        else if (this.a.getDisplayName() == null)
         {
             return false;
         }
@@ -43,9 +43,9 @@ public class PathfinderGoalPet extends PathfinderGoal
         {
             return false;
         }
-        else if (b.h( this.a) > (double) ( this.g *  this.g))
+        else if (b.h(this.a) > (double) (this.g * this.g))
         {
-            this.a.setPosition( this.b.locX(), this.b.locY(), this.b.locZ());
+            this.a.setPosition(this.b.locX(), this.b.locY(), this.b.locZ());
             return false;
         }
         else
@@ -53,28 +53,28 @@ public class PathfinderGoalPet extends PathfinderGoal
 
             if (this.a instanceof EntityCreature)
             {
-                Vec3D   vec = RandomPositionGenerator.a((EntityCreature)  this.a,16,7, this.b.getPositionVector());
+                Vec3D vec = RandomPositionGenerator.a((EntityCreature) this.a, 16, 7, this.b.getPositionVector());
                 if (vec == null)
                 {
                     return false;
                 }
             }
 
-            this.c =  this.b.locX();
-            this.d =  this.b.locY();
-            this.e =  this.b.locZ();
+            this.c = this.b.locX();
+            this.d = this.b.locY();
+            this.e = this.b.locZ();
             return true;
         }
     }
 
     public void c()
     {
-        this.a.getNavigation().a( this.c, this.d, this.e, this.f);
+        this.a.getNavigation().a(this.c, this.d, this.e, this.f);
     }
 
     public boolean b()
     {
-        return  !this.a.getNavigation().m() &&  this.b.h(this.a) < (double) (this.g * this.g);
+        return !this.a.getNavigation().m() && this.b.h(this.a) < (double) (this.g * this.g);
     }
 
     public void d()

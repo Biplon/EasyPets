@@ -12,7 +12,7 @@ public class PetStruct
 
     private final Material itemMaterial;
 
-    private EntityType myEntityType;
+    private final EntityType myEntityType;
 
     private DyeColor color;
 
@@ -25,7 +25,7 @@ public class PetStruct
         return color;
     }
 
-    public net.minecraft.server.v1_15_R1.EntityFox.Type getType()
+    public EntityFox.Type getType()
     {
         return type;
     }

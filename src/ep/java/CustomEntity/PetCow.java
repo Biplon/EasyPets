@@ -9,27 +9,36 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityTargetEvent;
 import ep.java.Pathfinder.PathfinderGoalPet;
 
+import java.util.Objects;
+
 public class PetCow extends EntityCow implements PetPlaySound
 {
 
     public PetCow(Location loc, Player p)
     {
-        super(EntityTypes.COW, ((CraftWorld) loc.getWorld()).getHandle());
+        super(EntityTypes.COW, ((CraftWorld) Objects.requireNonNull(loc.getWorld())).getHandle());
         this.setPosition(loc.getX(), loc.getY(), loc.getZ());
         this.setInvulnerable(true);
         this.setAge(-1);
         this.ageLocked = true;
-        this.setGoalTarget((EntityLiving) ((CraftPlayer) p).getHandle(), EntityTargetEvent.TargetReason.CUSTOM, true);
+        this.setGoalTarget(((CraftPlayer) p).getHandle(), EntityTargetEvent.TargetReason.CUSTOM, true);
     }
 
     @Override
-    public void setOnFire(int i, boolean callEvent) { }
+    public void setOnFire(int i, boolean callEvent)
+    {
+    }
 
     @Override
-    protected void collideNearby() { }
+    protected void collideNearby()
+    {
+    }
 
     @Override
-    public boolean isCollidable(){return false;}
+    public boolean isCollidable()
+    {
+        return false;
+    }
 
     @Override
     protected void initPathfinder()

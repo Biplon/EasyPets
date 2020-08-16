@@ -21,6 +21,5 @@ public class OnTargetChanged implements Listener
                 event.setCancelled(true);
             }
         }
-
     }
 }

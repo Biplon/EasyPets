@@ -9,25 +9,34 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityTargetEvent;
 import ep.java.Pathfinder.PathfinderGoalPet;
 
+import java.util.Objects;
+
 public class PetSilverfish extends EntitySilverfish implements PetPlaySound
 {
 
     public PetSilverfish(Location loc, Player p)
     {
-        super(EntityTypes.SILVERFISH, ((CraftWorld) loc.getWorld()).getHandle());
+        super(EntityTypes.SILVERFISH, ((CraftWorld) Objects.requireNonNull(loc.getWorld())).getHandle());
         this.setPosition(loc.getX(), loc.getY(), loc.getZ());
         this.setInvulnerable(true);
-        this.setGoalTarget((EntityLiving) ((CraftPlayer) p).getHandle(), EntityTargetEvent.TargetReason.CUSTOM, true);
+        this.setGoalTarget(((CraftPlayer) p).getHandle(), EntityTargetEvent.TargetReason.CUSTOM, true);
     }
 
     @Override
-    public void setOnFire(int i, boolean callEvent) { }
+    public void setOnFire(int i, boolean callEvent)
+    {
+    }
 
     @Override
-    protected void collideNearby() { }
+    protected void collideNearby()
+    {
+    }
 
     @Override
-    public boolean isCollidable(){return false;}
+    public boolean isCollidable()
+    {
+        return false;
+    }
 
     @Override
     protected void initPathfinder()

@@ -7,29 +7,37 @@ import org.bukkit.Sound;
 import org.bukkit.craftbukkit.v1_15_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_15_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
-import org.bukkit.event.entity.EntityCombustEvent;
 import org.bukkit.event.entity.EntityTargetEvent;
+
+import java.util.Objects;
 
 public class PetZombie extends EntityZombie implements PetPlaySound
 {
 
     public PetZombie(Location loc, Player p)
     {
-        super(EntityTypes.ZOMBIE, ((CraftWorld) loc.getWorld()).getHandle());
+        super(EntityTypes.ZOMBIE, ((CraftWorld) Objects.requireNonNull(loc.getWorld())).getHandle());
         this.setPosition(loc.getX(), loc.getY(), loc.getZ());
         this.setInvulnerable(true);
         this.setBaby(true);
-        this.setGoalTarget((EntityLiving) ((CraftPlayer) p).getHandle(), EntityTargetEvent.TargetReason.CUSTOM, true);
+        this.setGoalTarget(((CraftPlayer) p).getHandle(), EntityTargetEvent.TargetReason.CUSTOM, true);
     }
 
     @Override
-    public void setOnFire(int i, boolean callEvent) { }
+    public void setOnFire(int i, boolean callEvent)
+    {
+    }
 
     @Override
-    protected void collideNearby() { }
+    protected void collideNearby()
+    {
+    }
 
     @Override
-    public boolean isCollidable(){return false;}
+    public boolean isCollidable()
+    {
+        return false;
+    }
 
     @Override
     protected void initPathfinder()

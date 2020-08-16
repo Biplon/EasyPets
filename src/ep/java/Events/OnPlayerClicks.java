@@ -1,7 +1,5 @@
 package ep.java.Events;
 
-import com.mysql.jdbc.Buffer;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -30,9 +28,9 @@ public class OnPlayerClicks implements Listener
                     {
                         PetsManager.getInstance().removePet(player);
                     }
-                    else if (PetsManager.getInstance().setPlayerPet(player.getInventory().getItemInMainHand().getItemMeta().getLore().get(1),player))
+                    else
                     {
-
+                        PetsManager.getInstance().setPlayerPet(Objects.requireNonNull(player.getInventory().getItemInMainHand().getItemMeta().getLore()).get(1), player);
                     }
                 }
                 event.setCancelled(true);

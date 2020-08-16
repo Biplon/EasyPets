@@ -7,7 +7,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import ep.java.Config.LanguageManager;
 
-
 public class OnEntityDamage implements Listener
 {
     @EventHandler(priority = EventPriority.HIGHEST)

@@ -9,6 +9,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.Objects;
+
 public class ChangePetNameCommand implements CommandExecutor
 {
     @Override
@@ -23,9 +25,8 @@ public class ChangePetNameCommand implements CommandExecutor
             }
             else
             {
-                if (player.getInventory().getItemInMainHand().getType() != Material.AIR && player.getInventory().getItemInMainHand().getItemMeta().getDisplayName().contains(LanguageManager.name))
+                if (player.getInventory().getItemInMainHand().getType() != Material.AIR && Objects.requireNonNull(player.getInventory().getItemInMainHand().getItemMeta()).getDisplayName().contains(LanguageManager.name))
                 {
-
                     if (args.length == 1)
                     {
                         if (args[0].contains("&"))
@@ -37,7 +38,7 @@ public class ChangePetNameCommand implements CommandExecutor
                         }
                         ItemStack i = player.getInventory().getItemInMainHand();
                         ItemMeta im = i.getItemMeta();
-                        im.setDisplayName(LanguageManager.name+args[0].replace("&","§"));
+                        im.setDisplayName(LanguageManager.name + args[0].replace("&", "§"));
                         i.setItemMeta(im);
                         return true;
                     }

@@ -6,7 +6,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.craftbukkit.libs.org.apache.commons.io.FileUtils;
 import org.bukkit.entity.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -42,9 +41,9 @@ public class PetsManager
         try
         {
             File file = new File(EasyPets.getInstance().getDataFolder() + "/pets.txt");
-            BufferedReader reader = null;
+            BufferedReader reader;
             reader = new BufferedReader(new FileReader(file));
-            String text = null;
+            String text;
             while ((text = reader.readLine()) != null)
             {
                 String[] tmp = text.split(",");
@@ -58,7 +57,7 @@ public class PetsManager
                     {
                         petList.add(new PetStruct(tmp[0], EntityType.valueOf(tmp[1]), Material.valueOf(tmp[2]), Fox.Type.valueOf(tmp[3])));
                     }
-                    else if(EntityType.valueOf(tmp[1]) == EntityType.PARROT ||EntityType.valueOf(tmp[1]) == EntityType.LLAMA || EntityType.valueOf(tmp[1]) == EntityType.HORSE ||EntityType.valueOf(tmp[1]) == EntityType.CAT)
+                    else if (EntityType.valueOf(tmp[1]) == EntityType.PARROT || EntityType.valueOf(tmp[1]) == EntityType.LLAMA || EntityType.valueOf(tmp[1]) == EntityType.HORSE || EntityType.valueOf(tmp[1]) == EntityType.CAT)
                     {
                         petList.add(new PetStruct(tmp[0], EntityType.valueOf(tmp[1]), Material.valueOf(tmp[2]), Integer.parseInt(tmp[3])));
                     }
@@ -76,21 +75,9 @@ public class PetsManager
         }
     }
 
-    public boolean setPlayerPet(String petname, Player p)
+    public boolean setPlayerPet(String petName, Player p)
     {
-        return createPet(petname, p);
-    }
-
-    public boolean petExist(String name)
-    {
-        for (PetStruct p : petList)
-        {
-            if (p.getName().equals(name))
-            {
-                return true;
-            }
-        }
-        return false;
+        return createPet(petName, p);
     }
 
     private PetStruct getPetStruct(String name)
@@ -118,23 +105,23 @@ public class PetsManager
         return false;
     }
 
-    public void playSound(Entity e,Player p)
+    public void playSound(Entity e, Player p)
     {
         for (Pet pet : activePets)
         {
             if (pet.getMyEntity().getDisplayName().getText().contains(Objects.requireNonNull(e.getCustomName())))
             {
                 World w = p.getWorld();
-                w.playSound(p.getLocation(),((PetPlaySound) pet.getMyEntity()).getSound(), 10,1);
+                w.playSound(p.getLocation(), ((PetPlaySound) pet.getMyEntity()).getSound(), 10, 1);
             }
         }
     }
 
-    private boolean createPet(String petname, Player p)
+    private boolean createPet(String petName, Player p)
     {
-        if (getPetStruct(petname) != null)
+        if (getPetStruct(petName) != null)
         {
-            activePets.add(new Pet(p, getPetStruct(petname)));
+            activePets.add(new Pet(p, Objects.requireNonNull(getPetStruct(petName))));
             return true;
         }
         else
@@ -145,7 +132,7 @@ public class PetsManager
 
     public void removePet(Player player)
     {
-        for (Pet p:activePets)
+        for (Pet p : activePets)
         {
             if (p.getOwner() == player)
             {
@@ -165,16 +152,16 @@ public class PetsManager
             {
                 if (petStruct.getName().equals(arg1))
                 {
-                   map = p.getInventory().addItem(createItem(petStruct.getItemMaterial(), LanguageManager.name + petStruct.getName(), LanguageManager.lore1, petStruct.getName(),LanguageManager.lore3));
-                   if (map.size() == 1)
-                   {
-                       for (final ItemStack item : map.values())
-                       {
-                           p.getWorld().dropItemNaturally(p.getLocation(), item);
-                       }
-                       map.clear();
-                   }
-                   return;
+                    map = p.getInventory().addItem(createItem(petStruct.getItemMaterial(), LanguageManager.name + petStruct.getName(), LanguageManager.lore1, petStruct.getName(), LanguageManager.lore3));
+                    if (map.size() == 1)
+                    {
+                        for (final ItemStack item : map.values())
+                        {
+                            p.getWorld().dropItemNaturally(p.getLocation(), item);
+                        }
+                        map.clear();
+                    }
+                    return;
                 }
             }
         }
@@ -210,7 +197,7 @@ public class PetsManager
             Map<Integer, ItemStack> map;
             for (PetStruct petStruct : petList)
             {
-               map = p.getInventory().addItem(createItem(petStruct.getItemMaterial(), LanguageManager.name + petStruct.getName(), LanguageManager.lore1, petStruct.getName(),LanguageManager.lore3));
+                map = p.getInventory().addItem(createItem(petStruct.getItemMaterial(), LanguageManager.name + petStruct.getName(), LanguageManager.lore1, petStruct.getName(), LanguageManager.lore3));
                 if (map.size() == 1)
                 {
                     for (final ItemStack item : map.values())
@@ -223,22 +210,10 @@ public class PetsManager
         }
     }
 
-    public void removePet(Entity entity)
-    {
-        for (Pet p:activePets)
-        {
-            if (p.getMyEntity() != null && p.getMyEntity() == entity)
-            {
-                p.disable();
-            }
-        }
-        clearList();
-    }
-
     private void clearList()
     {
         List<Pet> tmpPets = new ArrayList<>();
-        for (Pet p:activePets)
+        for (Pet p : activePets)
         {
             if (p.getMyEntity() != null && p.getOwner() != null && !p.getMyEntity().dead)
             {

@@ -1,19 +1,13 @@
 package ep.java.Events;
 
 import ep.java.Config.LanguageManager;
-import ep.java.CustomEntity.PetPlaySound;
 import ep.java.Manager.PetsManager;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.Sound;
-import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
 
 import java.util.Objects;
 
@@ -23,9 +17,9 @@ public class OnPlayerInteractEntity implements Listener
     public void onPlayerClicks(PlayerInteractEntityEvent event)
     {
         Player player = event.getPlayer();
-        if(event.getRightClicked().getCustomName() != null && event.getRightClicked().getCustomName().contains(LanguageManager.name))
+        if (event.getRightClicked().getCustomName() != null && event.getRightClicked().getCustomName().contains(LanguageManager.name))
         {
-            PetsManager.getInstance().playSound(event.getRightClicked(),player);
+            PetsManager.getInstance().playSound(event.getRightClicked(), player);
         }
         if (player.getInventory().getItemInMainHand().getType() != Material.AIR)
         {
@@ -33,7 +27,6 @@ public class OnPlayerInteractEntity implements Listener
             {
                 event.setCancelled(true);
                 player.updateInventory();
-
             }
         }
     }

@@ -9,17 +9,19 @@ import org.bukkit.craftbukkit.v1_15_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityTargetEvent;
 
+import java.util.Objects;
+
 public class PetParrot extends EntityParrot implements PetPlaySound
 {
 
     public PetParrot(Location loc, Player p,int variant)
     {
-        super(EntityTypes.PARROT, ((CraftWorld) loc.getWorld()).getHandle());
+        super(EntityTypes.PARROT, ((CraftWorld) Objects.requireNonNull(loc.getWorld())).getHandle());
         this.setPosition(loc.getX(), loc.getY(), loc.getZ());
         this.setInvulnerable(true);
         this.setVariant(variant);
         this.setOwnerUUID(p.getUniqueId());
-        this.setGoalTarget((EntityLiving) ((CraftPlayer) p).getHandle(), EntityTargetEvent.TargetReason.CUSTOM, true);
+        this.setGoalTarget(((CraftPlayer) p).getHandle(), EntityTargetEvent.TargetReason.CUSTOM, true);
     }
 
     @Override
