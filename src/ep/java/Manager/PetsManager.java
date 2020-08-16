@@ -28,7 +28,7 @@ public class PetsManager
 
     private final List<PetStruct> petList = new ArrayList<>();
 
-    private final List<Pet> activePets = new ArrayList<>();
+    private List<Pet> activePets = new ArrayList<>();
 
     public PetsManager()
     {
@@ -56,7 +56,7 @@ public class PetsManager
                     {
                         petList.add(new PetStruct(tmp[0], EntityType.valueOf(tmp[1]), Material.valueOf(tmp[2]), Fox.Type.valueOf(tmp[3])));
                     }
-                    else if(EntityType.valueOf(tmp[1]) == EntityType.PARROT ||EntityType.valueOf(tmp[1]) == EntityType.LLAMA)
+                    else if(EntityType.valueOf(tmp[1]) == EntityType.PARROT ||EntityType.valueOf(tmp[1]) == EntityType.LLAMA || EntityType.valueOf(tmp[1]) == EntityType.HORSE ||EntityType.valueOf(tmp[1]) == EntityType.CAT)
                     {
                         petList.add(new PetStruct(tmp[0], EntityType.valueOf(tmp[1]), Material.valueOf(tmp[2]), Integer.parseInt(tmp[3])));
                     }
@@ -131,20 +131,14 @@ public class PetsManager
 
     public void removePet(Player player)
     {
-        int place = -1;
-        for (int i = 0; i < activePets.size(); i++)
+        for (Pet p:activePets)
         {
-            if (activePets.get(i).getOwner() == player)
+            if (p.getOwner() == player)
             {
-                place = i;
-                break;
+                p.disable();
             }
         }
-        if (place > -1)
-        {
-            activePets.get(place).disable();
-            activePets.remove(place);
-        }
+        clearList();
     }
 
     public void getPlayerPet(String arg, String arg1)
@@ -213,5 +207,30 @@ public class PetsManager
                 }
             }
         }
+    }
+
+    public void removePet(Entity entity)
+    {
+        for (Pet p:activePets)
+        {
+            if (p.getMyEntity() != null && p.getMyEntity() == entity)
+            {
+                p.disable();
+            }
+        }
+        clearList();
+    }
+
+    private void clearList()
+    {
+        List<Pet> tmpPets = new ArrayList<>();
+        for (Pet p:activePets)
+        {
+            if (p.getMyEntity() != null || p.getOwner() != null)
+            {
+                tmpPets.add(p);
+            }
+        }
+        activePets = tmpPets;
     }
 }

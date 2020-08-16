@@ -11,13 +11,14 @@ import ep.java.Pathfinder.PathfinderGoalPet;
 public class PetCat extends EntityCat
 {
 
-    public PetCat(Location loc, Player p)
+    public PetCat(Location loc, Player p,int variant)
     {
         super(EntityTypes.CAT, ((CraftWorld) loc.getWorld()).getHandle());
         this.setPosition(loc.getX(), loc.getY(), loc.getZ());
         this.setInvulnerable(true);
         this.setAge(-1);
         this.ageLocked = true;
+        this.setCatType(variant);
         this.setGoalTarget((EntityLiving) ((CraftPlayer) p).getHandle(), EntityTargetEvent.TargetReason.CUSTOM, true);
     }
 

@@ -4,6 +4,7 @@ import ep.java.Commands.GivePlayerPetCommand;
 import ep.java.Config.LanguageManager;
 import ep.java.Events.OnEntityDamage;
 import ep.java.Events.OnPlayerClicks;
+import ep.java.Events.OnPlayerQuit;
 import ep.java.Events.OnTargetChanged;
 import ep.java.Manager.PetsManager;
 import org.bukkit.event.HandlerList;
@@ -45,6 +46,7 @@ public class EasyPets extends JavaPlugin
         pm.registerEvents(new OnPlayerClicks(), this);
         pm.registerEvents(new OnEntityDamage(), this);
         pm.registerEvents(new OnTargetChanged(), this);
+        pm.registerEvents(new OnPlayerQuit(), this);
     }
 
     @Override

@@ -1,7 +1,9 @@
 package ep.java.Events;
 
 import ep.java.Config.LanguageManager;
+import ep.java.Manager.PetsManager;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -13,13 +15,14 @@ public class OnTargetChanged implements Listener
     public void onEntityDamage(EntityTargetLivingEntityEvent event)
     {
         Entity entity = event.getTarget();
-       if (entity !=null)
-       {
-           if (entity.getCustomName() != null && entity.getCustomName().contains(LanguageManager.name))
-           {
-               event.setTarget(null);
-               event.setCancelled(true);
-           }
-       }
+        if (entity !=null)
+        {
+            if (entity.getCustomName() != null && entity.getCustomName().contains(LanguageManager.name))
+            {
+                event.setTarget(null);
+                event.setCancelled(true);
+            }
+        }
+
     }
 }

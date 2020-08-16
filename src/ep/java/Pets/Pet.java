@@ -20,6 +20,11 @@ public class Pet
 
     private Entity myEntity;
 
+    public Entity getMyEntity()
+    {
+        return myEntity;
+    }
+
     public Player getOwner()
     {
         return owner;
@@ -36,7 +41,7 @@ public class Pet
         }
         else if (ps.getMyEntityType() == EntityType.CAT)
         {
-            enti = new PetCat(p.getLocation(),p);
+            enti = new PetCat(p.getLocation(),p,ps.getVariant());
         }
         else if (ps.getMyEntityType() == EntityType.CHICKEN)
         {
@@ -137,6 +142,26 @@ public class Pet
         else if (ps.getMyEntityType() == EntityType.LLAMA)
         {
             enti = new PetLlama(p.getLocation(),p,ps.getVariant());
+        }
+        else if (ps.getMyEntityType() == EntityType.DONKEY)
+        {
+            enti = new PetDonkey(p.getLocation(),p);
+        }
+        else if (ps.getMyEntityType() == EntityType.VEX)
+        {
+            enti = new PetVex(p.getLocation(),p);
+        }
+        else if (ps.getMyEntityType() == EntityType.SKELETON_HORSE)
+        {
+            enti = new PetSHorse(p.getLocation(),p);
+        }
+        else if (ps.getMyEntityType() == EntityType.ZOMBIE_HORSE)
+        {
+            enti = new PetZHorse(p.getLocation(),p);
+        }
+        else if (ps.getMyEntityType() == EntityType.HORSE)
+        {
+            enti = new PetHorse(p.getLocation(),p,ps.getVariant());
         }
         ((CraftWorld) p.getWorld()).getHandle().addEntity(enti);
         enti.setCustomName(new ChatComponentText(LanguageManager.name + "" + ps.getName()));
