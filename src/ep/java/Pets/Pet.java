@@ -122,6 +122,22 @@ public class Pet
         {
             enti = new PetMSlime(p.getLocation(),p);
         }
+        else if (ps.getMyEntityType() == EntityType.PARROT)
+        {
+            enti = new PetParrot(p.getLocation(),p,ps.getVariant());
+        }
+        else if (ps.getMyEntityType() == EntityType.SALMON)
+        {
+            enti = new PetSalmon(p.getLocation(),p);
+        }
+        else if (ps.getMyEntityType() == EntityType.PUFFERFISH)
+        {
+            enti = new PetPufferFish(p.getLocation(),p);
+        }
+        else if (ps.getMyEntityType() == EntityType.LLAMA)
+        {
+            enti = new PetLlama(p.getLocation(),p,ps.getVariant());
+        }
         ((CraftWorld) p.getWorld()).getHandle().addEntity(enti);
         enti.setCustomName(new ChatComponentText(LanguageManager.name + "" + ps.getName()));
         enti.setCustomNameVisible(true);

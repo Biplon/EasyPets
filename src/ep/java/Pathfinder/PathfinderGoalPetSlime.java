@@ -50,16 +50,16 @@ public class PathfinderGoalPetSlime extends PathfinderGoal
         else
         {
 
-            this.c =  this.b.locX();
+            this.c =  this.b.locX() + 0.75F;
             this.d =  this.b.locY();
-            this.e =  this.b.locZ();
+            this.e =  this.b.locZ() + 0.75F;
             return true;
         }
     }
 
     public void c()
     {
-        this.a.getNavigation().a(this.b,this.f);
+        this.a.getNavigation().a(this.c,this.d,this.e,this.f);
         super.c();
     }
 

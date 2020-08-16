@@ -20,7 +20,12 @@ public class GivePlayerPetCommand implements CommandExecutor
             }
             else
             {
-                if (args.length == 2)
+                if (args.length == 1)
+                {
+                    PetsManager.getInstance().getPlayerAllPets(args[0]);
+                    return true;
+                }
+                else if (args.length == 2)
                 {
                     PetsManager.getInstance().getPlayerPet(args[0],args[1]);
                     return true;

@@ -23,6 +23,14 @@ public class PetFox extends EntityFox
         this.setGoalTarget((EntityLiving) ((CraftPlayer) p).getHandle(), EntityTargetEvent.TargetReason.CUSTOM, true);
     }
 
+    @Override
+    public void setOnFire(int i, boolean callEvent) { }
+
+    @Override
+    protected void collideNearby() { }
+
+    @Override
+    public boolean isCollidable(){return false;}
 
     @Override
     protected void initPathfinder()

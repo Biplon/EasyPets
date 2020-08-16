@@ -5,7 +5,6 @@ import org.bukkit.entity.Entity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityTargetLivingEntityEvent;
 
 public class OnTargetChanged implements Listener
@@ -14,10 +13,13 @@ public class OnTargetChanged implements Listener
     public void onEntityDamage(EntityTargetLivingEntityEvent event)
     {
         Entity entity = event.getTarget();
-        if (entity.getCustomName() != null && entity.getCustomName().contains(LanguageManager.name))
-        {
-            event.setTarget(null);
-            event.setCancelled(true);
-        }
+       if (entity !=null)
+       {
+           if (entity.getCustomName() != null && entity.getCustomName().contains(LanguageManager.name))
+           {
+               event.setTarget(null);
+               event.setCancelled(true);
+           }
+       }
     }
 }

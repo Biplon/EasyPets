@@ -21,6 +21,15 @@ public class PetHusk extends EntityZombieHusk
     }
 
     @Override
+    public void setOnFire(int i, boolean callEvent) { }
+
+    @Override
+    protected void collideNearby() { }
+
+    @Override
+    public boolean isCollidable(){return false;}
+
+    @Override
     protected void initPathfinder()
     {
         this.goalSelector.a(0, new PathfinderGoalFloat(this));

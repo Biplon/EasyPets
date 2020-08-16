@@ -18,6 +18,8 @@ public class PetStruct
 
     private EntityFox.Type type;
 
+    private int variant;
+
     public DyeColor getColor()
     {
         return color;
@@ -61,6 +63,15 @@ public class PetStruct
         this.color = color;
     }
 
+    public PetStruct(String name, EntityType myEntityType, Material material, int variant)
+    {
+        this.name = name;
+        this.myEntityType = myEntityType;
+
+        itemMaterial = material;
+        this.variant = variant;
+    }
+
     public PetStruct(String name, EntityType myEntityType, Material material, Fox.Type type)
     {
         this.name = name;
@@ -74,5 +85,10 @@ public class PetStruct
         {
             this.type = EntityFox.Type.SNOW;
         }
+    }
+
+    public int getVariant()
+    {
+        return variant;
     }
 }

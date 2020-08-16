@@ -1,23 +1,20 @@
 package ep.java.CustomEntity;
 
+import ep.java.Pathfinder.PathfinderGoalPet;
 import net.minecraft.server.v1_15_R1.*;
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_15_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_15_R1.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_15_R1.event.CraftEventFactory;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.event.entity.EntityTargetEvent;
 
-import java.util.List;
-
-public class PetBat extends EntityBat
+public class PetSalmon extends EntitySalmon
 {
     private EntityLiving goal;
 
-    public PetBat(Location loc, Player p)
+    public PetSalmon(Location loc, Player p)
     {
-        super(EntityTypes.BAT, ((CraftWorld) loc.getWorld()).getHandle());
+        super(EntityTypes.SALMON, ((CraftWorld) loc.getWorld()).getHandle());
         this.setPosition(loc.getX(), loc.getY(), loc.getZ());
         this.setInvulnerable(true);
         goal = ((EntityLiving) ((CraftPlayer) p).getHandle());
@@ -30,37 +27,24 @@ public class PetBat extends EntityBat
     protected void collideNearby() { }
 
     @Override
+    protected void initPathfinder()
+    {
+    }
+
+    @Override
     protected void mobTick()
     {
+        super.mobTick();
         BlockPosition blockposition = new BlockPosition(this);
-        BlockPosition blockposition1 = blockposition.up();
-        if (this.isAsleep())
-        {
-            if (this.world.getType(blockposition1).isOccluding(this.world, blockposition))
-            {
-                if (this.random.nextInt(200) == 0)
-                {
-                    this.aK = (float)this.random.nextInt(360);
-                }
-
-            }
-            else if (CraftEventFactory.handleBatToggleSleepEvent(this, true))
-            {
-                this.setAsleep(false);
-                this.world.a((EntityHuman)null, 1025, blockposition, 0);
-            }
-        }
-        else
-        {
             if (goal.h( this) > (double) ( 15 *  15))
             {
                 this.setPosition(this.goal.locX(), this.goal.locY(), this.goal.locZ());
             }
             else
             {
-                double d0 = this.goal.locX() + 0.5D - this.locX();
+                double d0 = this.goal.locX() + 0.5D - this.locX() +  (Math.random() * 5) + 1;
                 double d1 = this.goal.locY() + 0.1D - this.locY();
-                double d2 = this.goal.locZ() + 0.5D - this.locZ();
+                double d2 = this.goal.locZ() + 0.5D - this.locZ() + (Math.random() * 5) + 1;
                 Vec3D vec3d = this.getMot();
                 Vec3D vec3d1 = vec3d.add((Math.signum(d0) * 0.5D - vec3d.x) * 0.10000000149011612D, (Math.signum(d1) * 0.699999988079071D - vec3d.y) * 0.10000000149011612D, (Math.signum(d2) * 0.5D - vec3d.z) * 0.10000000149011612D);
                 this.setMot(vec3d1);
@@ -68,12 +52,7 @@ public class PetBat extends EntityBat
                 float f1 = MathHelper.g(f - this.yaw);
                 this.bb = 0.5F;
                 this.yaw += f1;
-                if (this.random.nextInt(100) == 0 && this.world.getType(blockposition1).isOccluding(this.world, blockposition1) && CraftEventFactory.handleBatToggleSleepEvent(this, false)) {
-                    this.setAsleep(true);
-                }
-            }
 
         }
-
     }
 }

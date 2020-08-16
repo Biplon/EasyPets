@@ -22,9 +22,18 @@ public class PetTurtle extends EntityTurtle
     }
 
     @Override
+    public void setOnFire(int i, boolean callEvent) { }
+
+    @Override
+    protected void collideNearby() { }
+
+    @Override
+    public boolean isCollidable(){return false;}
+
+    @Override
     protected void initPathfinder()
     {
         this.goalSelector.a(0, new PathfinderGoalFloat(this));
-        this.goalSelector.a(1, new PathfinderGoalPet(this, 1, 15));
+        this.goalSelector.a(1, new PathfinderGoalPet(this, 3, 15));
     }
 }

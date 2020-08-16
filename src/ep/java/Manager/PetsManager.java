@@ -4,6 +4,7 @@ import ep.java.Config.LanguageManager;
 import org.bukkit.Bukkit;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
+import org.bukkit.craftbukkit.libs.org.apache.commons.io.FileUtils;
 import org.bukkit.entity.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -39,10 +40,6 @@ public class PetsManager
         try
         {
             File file = new File(EasyPets.getInstance().getDataFolder() + "/pets.txt");
-            if (!file.exists())
-            {
-                file.mkdir();
-            }
             BufferedReader reader = null;
             reader = new BufferedReader(new FileReader(file));
             String text = null;
@@ -58,6 +55,10 @@ public class PetsManager
                     if (EntityType.valueOf(tmp[1]) == EntityType.FOX)
                     {
                         petList.add(new PetStruct(tmp[0], EntityType.valueOf(tmp[1]), Material.valueOf(tmp[2]), Fox.Type.valueOf(tmp[3])));
+                    }
+                    else if(EntityType.valueOf(tmp[1]) == EntityType.PARROT ||EntityType.valueOf(tmp[1]) == EntityType.LLAMA)
+                    {
+                        petList.add(new PetStruct(tmp[0], EntityType.valueOf(tmp[1]), Material.valueOf(tmp[2]), Integer.parseInt(tmp[3])));
                     }
                     else
                     {
