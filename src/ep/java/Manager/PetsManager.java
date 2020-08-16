@@ -105,7 +105,7 @@ public class PetsManager
 
     public boolean playerPetActive(Player p)
     {
-        petList.removeAll(Collections.singleton(null));
+        clearList();
         for (Pet pet : activePets)
         {
             if (pet.getOwner() == p)
@@ -226,7 +226,7 @@ public class PetsManager
         List<Pet> tmpPets = new ArrayList<>();
         for (Pet p:activePets)
         {
-            if (p.getMyEntity() != null || p.getOwner() != null)
+            if (p.getMyEntity() != null && p.getOwner() != null && !p.getMyEntity().dead)
             {
                 tmpPets.add(p);
             }
