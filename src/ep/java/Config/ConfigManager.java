@@ -6,6 +6,9 @@ import java.io.File;
 
 public class ConfigManager
 {
+    public static int nameSize;
+
+
     public static void loadConfig()
     {
         File configFile = new File("plugins" + File.separator + EasyPets.getInstance().getName() + File.separator + "config.yml");
@@ -18,6 +21,7 @@ public class ConfigManager
         {
             EasyPets.getInstance().getLogger().info("Loading the config ...");
             EasyPets.getInstance().getConfig().load(configFile);
+            nameSize = EasyPets.getInstance().getConfig().getInt("general.namesize");
         }
         catch (Exception e)
         {

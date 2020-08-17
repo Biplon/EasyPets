@@ -1,5 +1,6 @@
 package ep.java.Commands;
 
+import ep.java.Config.ConfigManager;
 import ep.java.Config.LanguageManager;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -36,11 +37,18 @@ public class ChangePetNameCommand implements CommandExecutor
                                 return false;
                             }
                         }
-                        ItemStack i = player.getInventory().getItemInMainHand();
-                        ItemMeta im = i.getItemMeta();
-                        im.setDisplayName(LanguageManager.name + args[0].replace("&", "§"));
-                        i.setItemMeta(im);
-                        return true;
+                        if(args[0].length() <= ConfigManager.nameSize)
+                        {
+                            ItemStack i = player.getInventory().getItemInMainHand();
+                            ItemMeta im = i.getItemMeta();
+                            im.setDisplayName(LanguageManager.name + args[0].replace("&", "§"));
+                            i.setItemMeta(im);
+                            return true;
+                        }
+                        else
+                        {
+                            player.sendMessage(LanguageManager.nameToLong);
+                        }
                     }
                 }
                 else
